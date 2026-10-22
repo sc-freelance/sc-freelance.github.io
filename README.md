@@ -80,6 +80,11 @@ Skills without a logo go in the "Also:" line underneath.
 Copy one `<li class="tl-item">…</li>` block inside the Experience `<ol>`. Put the newest entry at the top. The curved line connects the dots automatically, and entries alternate left and right on wide screens.
 To show a year instead of "A-levels", change the text in `<p class="tl-year">`.
 
+## After editing styles.css or script.js
+
+Bump the version number at the end of their links in `index.html`, e.g. `styles.css?v=2` → `styles.css?v=3`.
+Otherwise phones that visited before may keep showing the old styles with the new page.
+
 ## Change the colours
 
 All colours are at the top of `styles.css`:
