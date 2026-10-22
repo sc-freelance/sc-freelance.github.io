@@ -7,91 +7,95 @@ Live site: https://sc-freelance.github.io/
 ## Files
 
 ```
-index.html     All the content (text, projects, skills, links)
+index.html     All the content (text, projects, skills, experience, links)
 styles.css     Colours, spacing and layout
-script.js      Light/dark toggle (you won't usually need to touch this)
-images/        Headshot, project screenshots, hackathon photo, favicon
+script.js      Extras: dark mode toggle, fade-in on scroll, the curved timeline line,
+               "Copy email" button, highlighting the current section in the top bar
+images/        Headshot, project images, hackathon photo, favicon
+images/logos/  Skill logos (single-colour SVGs)
 cv/            Your CV PDF
 ```
 
-## Add or change your CV
+The page still works if `script.js` fails to load. You only lose the extras.
 
-Save your CV as `cv/Saad-Chughtai-CV.pdf` (exactly this name). The "Download CV" button already points there.
-Before uploading, check the PDF doesn't include your phone number or home address, since anyone can download it.
+## Update your CV
 
-## Replace a screenshot placeholder
-
-Each project card starts with a placeholder box like this:
-
-```html
-<div class="shot placeholder" role="img" aria-label="Screenshot coming soon">
-  <span>Image to add: screenshot of the DevTrack Kanban board</span>
-</div>
-```
-
-1. Save the screenshot in `images/`, e.g. `images/devtrack.jpg`. Keep it under about 300 KB, and use a wide (16:9) crop.
-2. Replace the whole `<div class="shot placeholder" …> … </div>` block with:
-
-```html
-<img class="shot" src="images/devtrack.jpg" width="1280" height="720" loading="lazy"
-     alt="DevTrack Kanban board showing tasks in To do, In progress and Done columns">
-```
-
-Write the `alt` text as a short description of what's in the picture, for screen-reader users.
+Replace `cv/Saad-Chughtai-CV.pdf`, keeping exactly that file name. Every "Download CV" button points to it.
+Before uploading, check the PDF doesn't include your phone number or home address, because anyone can download it.
 
 ## Add a project
 
-Copy this block into the `<section id="projects">` part of `index.html`, under the last `</article>`:
+Copy this block into the `<div class="grid">` under "Things I've worked on" in `index.html`:
 
 ```html
-<article class="card">
+<article class="card reveal">
   <img class="shot" src="images/my-project.jpg" width="1280" height="720" loading="lazy"
        alt="Describe the screenshot">
   <div class="card-body">
     <h3>Project name</h3>
     <p>One or two lines on what it does and what you used it for.</p>
-    <ul class="tags" aria-label="Technologies">
-      <li>Python</li><li>Pandas</li>
-    </ul>
-    <a class="link" href="https://github.com/sc-freelance/REPO-NAME" target="_blank" rel="noopener">View code <span aria-hidden="true">→</span></a>
+    <p class="stack">Python · Pandas · SQL</p>
+    <a class="card-link" href="https://github.com/sc-freelance/REPO-NAME" target="_blank" rel="noopener">View code <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
   </div>
 </article>
 ```
 
-No screenshot yet? Use the placeholder `<div>` from the section above instead of the `<img>`. No link? Delete the `<a class="link" …>` line.
-
-## Update "Recent and in progress"
-
-Each item in the timeline is an `<li>`. Change the label to show its status:
+- **Charts:** use `class="shot chart"` instead of `class="shot"`. This shows the whole chart on a white background instead of cropping it.
+- **No link:** delete the `<a class="card-link" …>` line.
+- **No image yet:** use the placeholder box instead of the `<img>`:
 
 ```html
-<span class="status status-now">In progress</span>   <!-- teal, filled dot -->
-<span class="status status-next">Up next</span>
-<span class="status">Nov 2026</span>                 <!-- finished: just show the date -->
+<div class="shot placeholder" role="img" aria-label="Screenshot coming soon">
+  <span>Image to add: what the screenshot should show</span>
+</div>
 ```
 
-When something is finished, consider moving it into Projects as a full card.
+Keep images under about 300 KB. Write the `alt` text as a short description of what's in the picture, for screen-reader users.
 
-## Add or remove a skill
+## Update "In progress"
 
-Skills are chips inside `<ul class="chips">`. To add one, put a new `<li>` in the right group:
+These are the small `<article class="mini">` cards under the projects. The label sets the style:
 
 ```html
-<ul class="chips"><li>Python</li><li>Pandas</li><li>Power BI</li></ul>
+<span class="status status-now">In progress</span>   <!-- teal accent -->
+<span class="status">Up next</span>
 ```
 
-To add a whole new group, copy one `<div>` with its `<h3>` and `<ul class="chips">`.
+When something is finished, move it into the projects grid as a full card.
+
+## Add a skill logo
+
+1. Find the logo on https://simpleicons.org, download the SVG and save it in `images/logos/`, e.g. `images/logos/tableau.svg`.
+2. Add a line to the `<ul class="logos">` list:
+
+```html
+<li><i style="--logo:url(images/logos/tableau.svg)"></i>Tableau</li>
+```
+
+The logos show in your page colours automatically, including in dark mode, and turn teal on hover.
+Skills without a logo go in the "Also:" line underneath.
+
+## Add an experience entry
+
+Copy one `<li class="tl-item">…</li>` block inside the Experience `<ol>`. Put the newest entry at the top. The curved line connects the dots automatically, and entries alternate left and right on wide screens.
+To show a year instead of "A-levels", change the text in `<p class="tl-year">`.
 
 ## Change the colours
 
-All colours are at the top of `styles.css`. The main one is `--accent` (teal). There is one set for light mode and one for dark mode. If you change a colour, check that text on it stays readable, e.g. with https://webaim.org/resources/contrastchecker/ (aim for at least 4.5:1).
+All colours are at the top of `styles.css`:
+
+- `--ink`: navy headings and buttons
+- `--accent`: teal
+- `--warm`: the coral "Hi!"
+
+There is one set for light mode and one for dark mode. If you change a colour, check that text on it stays readable, for example with https://webaim.org/resources/contrastchecker/ (aim for at least 4.5:1).
 
 ## Publish changes
 
-On github.com: open the `sc-freelance.github.io` repository, open a file, click the pencil icon, edit, then "Commit changes".
-To upload images or the CV: "Add file" → "Upload files" → drop them into the right folder.
+**On github.com:** open the `sc-freelance.github.io` repository, open a file, click the pencil icon, edit it, then click "Commit changes".
+To upload images or the CV, click "Add file" → "Upload files" and drop them into the right folder.
 
-With Git:
+**With Git:**
 
 ```bash
 git add .
