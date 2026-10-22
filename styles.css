@@ -320,8 +320,6 @@ footer {
   .actions { grid-template-columns: repeat(3, 1fr); }
   .actions .btn-primary { grid-column: auto; }
   .skills { grid-template-columns: 1fr 1fr; }
-  .card { display: grid; grid-template-columns: 240px 1fr; }
-  .card .shot { aspect-ratio: auto; height: 100%; min-height: 180px; border-bottom: 0; border-right: 1px solid var(--line); }
 }
 
 /* ---------- Chart images (keep the whole chart visible) ---------- */
