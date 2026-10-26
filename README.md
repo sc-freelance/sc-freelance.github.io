@@ -85,6 +85,16 @@ To show a year instead of "A-levels", change the text in `<p class="tl-year">`.
 Bump the version number at the end of their links in `index.html`, e.g. `styles.css?v=2` → `styles.css?v=3`.
 Otherwise phones that visited before may keep showing the old styles with the new page.
 
+## Draft sections and preview mode
+
+New sections can be written in the live page without visitors seeing them:
+
+- `class="draft"`: only shown when the page is opened with `?preview`, i.e. https://sc-freelance.github.io/?preview
+- `class="live-only"`: shown normally, hidden in preview. This is the old version a draft will replace.
+- `<span class="todo">…</span>`: a highlighted box for text still to be written.
+
+To publish a draft: fill in every `todo` box (replace the whole `<span class="todo">…</span>` with your text), delete `draft` from the element's class, then delete the matching `live-only` element.
+
 ## Change the colours
 
 All colours are at the top of `styles.css`:

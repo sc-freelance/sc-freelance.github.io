@@ -65,7 +65,8 @@
   function buildLine() {
     if (!tl) return;
     var box = tl.getBoundingClientRect();
-    var pts = Array.prototype.map.call(tl.querySelectorAll('.dot'), function (d) {
+    var dots = Array.prototype.filter.call(tl.querySelectorAll('.dot'), function (d) { return d.offsetParent !== null; });
+    var pts = dots.map(function (d) {
       var r = d.getBoundingClientRect();
       return [r.left - box.left + r.width / 2, r.top - box.top + r.height / 2];
     });

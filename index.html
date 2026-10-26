@@ -16,22 +16,31 @@
   <meta property="og:image" content="https://sc-freelance.github.io/images/headshot.jpg">
 
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
   <script>
     /* Apply a saved light/dark choice before the page paints, and mark that JS is on */
     document.documentElement.classList.add('js');
+    /* ?preview shows draft sections (class="draft") and hides what they replace (class="live-only") */
+    if (/[?&]preview\b/.test(location.search)) document.documentElement.classList.add('preview');
     try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
 </head>
 <body>
   <a class="skip" href="#work">Skip to projects</a>
 
+  <!-- Only visible with ?preview -->
+  <div class="preview-banner draft" role="note">
+    <strong>Preview</strong> · New sections are shown, with <span class="todo">highlighted boxes</span> still to fill in. Visitors without <code>?preview</code> see the current site.
+    <a href="./">View the public version</a>
+  </div>
+
   <!-- ============ TOP BAR ============ -->
   <header class="topbar">
     <div class="topbar-inner">
       <a class="mark" href="#top" aria-label="Saad Chughtai, back to top">sc<span>.</span></a>
       <nav class="nav" aria-label="Sections">
-        <a class="nav-skills" href="#skills">Skills</a>
+        <a class="nav-wide draft" href="#about">About</a>
+        <a class="nav-wide" href="#skills">Skills</a>
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
@@ -79,6 +88,25 @@
       </div>
     </section>
 
+    <!-- ============ ABOUT ME (draft) ============ -->
+    <section id="about" class="about draft" aria-labelledby="about-h">
+      <div class="wrap">
+        <h2 id="about-h" class="eyebrow">About me</h2>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p><span class="todo">Why data, in 2–3 sentences in your own words. For example, what about Maths and Further Maths pulled you towards data, or the moment you got hooked.</span></p>
+            <p><span class="todo">What you enjoy and what you want next: the kind of problems, team or industry you'd like to work in, and what you'd bring.</span></p>
+          </div>
+          <dl class="about-facts reveal">
+            <div><dt>Based in</dt><dd>Manchester</dd></div>
+            <div><dt>Looking for</dt><dd>Data apprenticeship or junior data analyst role</dd></div>
+            <div><dt>Open to</dt><dd><span class="todo">Greater Manchester / North West / remote?</span></dd></div>
+            <div><dt>Available</dt><dd><span class="todo">e.g. immediately</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ SKILLS ============ -->
     <section id="skills" class="band" aria-labelledby="skills-h">
       <div class="wrap">
@@ -106,6 +134,31 @@
     <section id="work" aria-labelledby="work-h">
       <div class="wrap">
         <h2 id="work-h" class="eyebrow">Things I've worked on</h2>
+
+        <!-- FEATURED PROJECT (draft) – replaces the "In progress" card below when published -->
+        <article class="featured draft reveal">
+          <div class="shot placeholder featured-shot" role="img" aria-label="Screenshot coming soon">
+            <span><span class="todo">Image to add: Astrato dashboard screenshot (the engine overview page)</span></span>
+          </div>
+          <div class="featured-body">
+            <span class="status status-now">Featured · in progress</span>
+            <h3>Engine health monitor (NASA turbofan data)</h3>
+            <ul class="stats">
+              <li><b>20,000+</b><span>sensor readings cleaned</span></li>
+              <li><b><span class="todo">N</span></b><span>engines monitored</span></li>
+              <li><b><span class="todo">N</span></b><span>flagged Critical</span></li>
+            </ul>
+            <dl class="pwr">
+              <div><dt>Problem</dt><dd>Which aircraft engines need maintenance first? Answering that from raw NASA turbofan sensor data.</dd></div>
+              <div><dt>What I did</dt><dd>Cleaned 20,000+ sensor readings in Python, flagged each engine as Healthy, Watch or Critical, loaded the data into BigQuery and built a two-page Astrato dashboard.</dd></div>
+              <div><dt>Result</dt><dd><span class="todo">Your key finding, e.g. how many engines need attention now, or which sensors gave the earliest warning</span></dd></div>
+              <div><dt>Next</dt><dd>A public dashboard link, a machine-learning model to predict each engine's remaining life, and the full write-up on GitHub.</dd></div>
+            </dl>
+            <p class="stack">Python · Pandas · SQL · BigQuery · Astrato</p>
+            <p class="featured-links"><span class="todo">Dashboard link</span> <span class="todo">GitHub link</span></p>
+          </div>
+        </article>
+
         <div class="grid">
 
           <!-- PROJECT: GM Housing -->
@@ -113,7 +166,12 @@
             <img class="shot chart" src="images/gm-housing-median-prices.jpg" width="900" height="537" loading="lazy" alt="Bar chart of median property prices across the 10 Greater Manchester boroughs, highest in Trafford and lowest in Wigan">
             <div class="card-body">
               <h3>Greater Manchester housing and council tax analysis</h3>
-              <p>Analysis of official open data from HM Land Registry and the Valuation Office Agency across Greater Manchester's 10 boroughs. I filtered 90,867 national property sales down to 2,964 standard Greater Manchester sales, and loaded 32 yearly snapshots of housing stock (1993–2024), finding and fixing a double-counting bug along the way.</p>
+              <p class="live-only">Analysis of official open data from HM Land Registry and the Valuation Office Agency across Greater Manchester's 10 boroughs. I filtered 90,867 national property sales down to 2,964 standard Greater Manchester sales, and loaded 32 yearly snapshots of housing stock (1993–2024), finding and fixing a double-counting bug along the way.</p>
+              <dl class="pwr draft">
+                <div><dt>Problem</dt><dd>How do house prices and housing stock differ across Greater Manchester's 10 boroughs?</dd></div>
+                <div><dt>What I did</dt><dd>Filtered 90,867 national property sales from HM Land Registry down to 2,964 standard Greater Manchester sales, and loaded 32 yearly housing-stock snapshots (1993–2024) from the Valuation Office Agency, finding and fixing a double-counting bug along the way.</dd></div>
+                <div><dt>Result</dt><dd>Trafford's median sale price (£352,000) is almost twice Wigan's (£183,248), the lowest of the 10 boroughs. Housing stock grew from about 1.07 million homes in 1993 to over 1.28 million in 2024, and Manchester has the most homes, at about 249,300.</dd></div>
+              </dl>
               <p class="stack">Python · Pandas · Matplotlib · Scikit-learn · Jupyter</p>
               <a class="card-link" href="https://github.com/sc-freelance/Greater-Manchester-Housing-Property-Council-Tax-Analysis" target="_blank" rel="noopener">View code <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
             </div>
@@ -124,7 +182,12 @@
             <img class="shot chart" src="images/car-price-polynomial.jpg" width="900" height="714" loading="lazy" alt="Scatter plot of car price against horsepower with a polynomial regression curve">
             <div class="card-body">
               <h3>Car price prediction</h3>
-              <p>Linear and polynomial regression models that predict car prices, with validation that rejects invalid prices and horsepower values. I wrote 14 Pytest tests and debugged 7 failures until all 14 passed.</p>
+              <p class="live-only">Linear and polynomial regression models that predict car prices, with validation that rejects invalid prices and horsepower values. I wrote 14 Pytest tests and debugged 7 failures until all 14 passed.</p>
+              <dl class="pwr draft">
+                <div><dt>Problem</dt><dd>How well can a car's horsepower predict its price, and does a curve fit better than a straight line?</dd></div>
+                <div><dt>What I did</dt><dd>Built linear and polynomial regression models with validation that rejects invalid prices and horsepower values. Wrote 14 Pytest tests and debugged 7 failures until all 14 passed.</dd></div>
+                <div><dt>Result</dt><dd>Linear R² <span class="todo">0.xx</span> vs polynomial R² <span class="todo">0.xx</span> on the test set. <span class="todo">What you concluded, e.g. which model you'd trust and why</span></dd></div>
+              </dl>
               <p class="stack">Python · Pandas · NumPy · Scikit-learn · Pytest</p>
               <!-- TODO: replace with the exact repo link -->
               <a class="card-link" href="https://github.com/sc-freelance" target="_blank" rel="noopener">View code <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
@@ -137,6 +200,7 @@
             <div class="card-body">
               <h3>My AI agent workflow (Claude + Composio)</h3>
               <p>I use Claude as a personal AI agent for my job search and projects. I set the goal and make the decisions. Claude plans the steps and does the legwork through Composio connectors (Gmail, Google Calendar, Drive, BigQuery) and my own browser (LinkedIn, Astrato, GitHub). On my engine health project, it loaded my cleaned data into BigQuery and helped build the Astrato dashboard. Every email, message and post waits for my approval, and I write and check my own code.</p>
+              <p class="result draft"><b>Result:</b> <span class="todo">What it's changed for you, e.g. time saved each week, or how many applications and deadlines it tracks</span></p>
               <p class="stack">Claude · Composio · Claude in Chrome · BigQuery · prompt engineering</p>
               <a class="card-link" href="images/ai_agent_workflow.png" target="_blank" rel="noopener">View diagram <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
             </div>
@@ -150,6 +214,7 @@
             <div class="card-body">
               <h3>DevTrack</h3>
               <p>A full-stack app for tracking development tasks: a Kanban board in React, connected to a Django REST Framework API that validates input and powers a live analytics view of task progress.</p>
+              <p class="result draft"><b>Result:</b> <span class="todo">What you learned or what you're proudest of, e.g. the API validation or the analytics view</span></p>
               <p class="stack">React · Django REST Framework · SQLite · Axios</p>
               <a class="card-link" href="https://github.com/sc-freelance/DevTrack" target="_blank" rel="noopener">View code <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
             </div>
@@ -157,8 +222,8 @@
         </div>
 
         <!-- In progress -->
-        <h3 class="subhead">In progress</h3>
-        <div class="grid grid-small">
+        <h3 class="subhead live-only">In progress</h3>
+        <div class="grid grid-small live-only">
           <article class="mini reveal">
             <span class="status status-now">In progress</span>
             <h4>Engine health monitor (NASA turbofan data)</h4>
@@ -166,6 +231,31 @@
             <p class="stack">Python · Pandas · SQL · BigQuery · Astrato</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW I WORK (draft) ============ -->
+    <section id="how" class="how draft" aria-labelledby="how-h">
+      <div class="wrap">
+        <h2 id="how-h" class="eyebrow">How I work</h2>
+        <ul class="strengths">
+          <li class="reveal">
+            <h3>Attention to detail</h3>
+            <p>Spotted a combined file being counted twice in 32 years of housing data, which had created a 75-million-home outlier, and fixed it.</p>
+          </li>
+          <li class="reveal">
+            <h3>Testing as I go</h3>
+            <p>Wrote 14 Pytest tests for my car price model and debugged 7 failures, including true/false values being read as numbers, until all 14 passed.</p>
+          </li>
+          <li class="reveal">
+            <h3>Explaining things plainly</h3>
+            <p>On my placement, I worked through technical problems with marketing and engineering colleagues and explained the fixes in plain language.</p>
+          </li>
+          <li class="reveal">
+            <h3>Learning fast</h3>
+            <p><span class="todo">A real example, e.g. picking up BigQuery and Astrato for the engine project: how long it took, and what you built</span></p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -182,7 +272,13 @@
               <div class="tl-card reveal">
                 <p class="tl-when">16 Oct 2026 · Barclays Eagle Labs, Manchester</p>
                 <h3>Green Circles AI Hackathon</h3>
-                <p>Took part in the Green Circles Manchester AI hackathon.</p>
+                <p class="live-only">Took part in the Green Circles Manchester AI hackathon.</p>
+                <dl class="pwr draft">
+                  <div><dt>Challenge</dt><dd><span class="todo">What problem the event set, or what your team chose to build</span></dd></div>
+                  <div><dt>Team</dt><dd><span class="todo">Team size, and who was on it, e.g. students, developers, designers</span></dd></div>
+                  <div><dt>My part</dt><dd><span class="todo">What you personally did: code, data, idea, pitch</span></dd></div>
+                  <div><dt>Outcome</dt><dd><span class="todo">What you built or presented, any result, and one thing you learned</span></dd></div>
+                </dl>
                 <img class="photo" src="images/green-circles-hackathon.jpg" width="517" height="500" loading="lazy" alt="Saad with other participants in front of the Green Circles Manchester screen at Barclays Eagle Labs">
               </div>
             </li>
@@ -192,11 +288,30 @@
               <div class="tl-card reveal">
                 <p class="tl-when">Dec 2025 – present · Amica Connect Technologies</p>
                 <h3>Junior Developer <span class="muted">(unpaid technical placement)</span></h3>
-                <ul class="bullets">
+                <ul class="bullets draft">
+                  <li>Designed, tested and deployed an AI-powered Q&amp;A assistant for client enquiries, configured to answer general questions without giving medical advice. It ran live until the company decided to take it offline.</li>
+                  <li>Automated CRM pipelines and workflows in GoHighLevel to keep customer records accurate and up to date.</li>
+                  <li>Built landing pages and configured domains and DNS records for client-facing websites.</li>
+                  <li>Diagnosed and fixed technical issues with marketing and engineering colleagues, explaining problems and fixes in plain language.</li>
+                </ul>
+                <ul class="bullets live-only">
                   <li>Built, tested and deployed an AI-powered Q&amp;A agent for client enquiries. It ran live until the company decided to take it offline.</li>
                   <li>Built and maintained CRM pipelines and automated workflows in GoHighLevel.</li>
                   <li>Built landing pages and set up domains and DNS records for client websites.</li>
                   <li>Worked with marketing and engineering colleagues to troubleshoot technical issues.</li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- Certifications (draft) -->
+            <li class="tl-item draft">
+              <p class="tl-year"><span class="todo">Year</span></p><span class="dot" aria-hidden="true"></span>
+              <div class="tl-card reveal">
+                <p class="tl-when">Self-directed learning</p>
+                <h3>Certifications</h3>
+                <ul class="bullets">
+                  <li>IBM Full Stack Software Developer Professional Certificate · <span class="todo">Month Year</span></li>
+                  <li>Google AI Fundamentals (Coursera) · <span class="todo">Month Year</span></li>
                 </ul>
               </div>
             </li>
@@ -207,7 +322,7 @@
                 <p class="tl-when">Oct 2023 – Jun 2025 · Bolton Sixth Form College</p>
                 <h3>A-levels</h3>
                 <p>Mathematics (A), Further Mathematics (B), Art and Design (B) · 128 UCAS points</p>
-                <p>Certifications: IBM Full Stack Software Developer · Google AI Fundamentals (Coursera)</p>
+                <p class="live-only">Certifications: IBM Full Stack Software Developer · Google AI Fundamentals (Coursera)</p>
               </div>
             </li>
 
@@ -224,12 +339,24 @@
       </div>
     </section>
 
+    <!-- ============ TESTIMONIAL (optional draft – delete if you don't get one) ============ -->
+    <section id="kind-words" class="kind-words draft" aria-labelledby="kw-h">
+      <div class="wrap">
+        <h2 id="kw-h" class="eyebrow">Kind words</h2>
+        <figure class="quote reveal">
+          <blockquote><p><span class="todo">A real 1–2 line quote from your placement supervisor, a tutor or a hackathon organiser. Optional: this section is deleted if you don't get one.</span></p></blockquote>
+          <figcaption><span class="todo">Name</span>, <span class="todo">role and organisation</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
     <!-- ============ CONTACT ============ -->
     <section id="contact" aria-labelledby="contact-h">
       <div class="wrap">
         <h2 id="contact-h" class="eyebrow">Contact me</h2>
         <div class="contact reveal">
-          <p class="contact-lead">Hiring for a data apprenticeship or junior data role, or want to chat about data in Manchester? I'd love to hear from you.</p>
+          <p class="contact-lead live-only">Hiring for a data apprenticeship or junior data role, or want to chat about data in Manchester? I'd love to hear from you.</p>
+          <p class="contact-lead draft">I'm looking for a data analyst apprenticeship or junior data analyst role in <span class="todo">Greater Manchester and the North West / remote?</span>. If you're hiring, or want to talk about data in Manchester, get in touch.</p>
           <div class="email-row">
             <a class="btn btn-primary btn-big" href="mailto:saadchughtai756@gmail.com">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
@@ -254,6 +381,6 @@
     <p>© <span id="year">2026</span> Saad Chughtai · Manchester</p>
   </footer>
 
-  <script src="script.js?v=2" defer></script>
+  <script src="script.js?v=3" defer></script>
 </body>
 </html>
