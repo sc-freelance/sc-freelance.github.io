@@ -1,0 +1,243 @@
+<!doctype html>
+<!--
+  Source for portfolio/Saad-Chughtai-Portfolio.pdf
+  Edit this file, then rebuild the PDF with:  python3 _portfolio/build.py
+  (Folders starting with "_" are not published by GitHub Pages, so this page isn't public.)
+  Only put finished, accurate content here: this PDF gets sent to employers.
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Saad Chughtai – Portfolio</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 18mm; }
+  :root {
+    --ink: #1f2a44; --text: #2b2f36; --text-2: #50555e; --text-3: #6b7079;
+    --line: #e2dfd7; --accent: #0d6b5c; --accent-soft: #e2f2ee; --warm: #c2462e; --paper: #f5f3ee;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: Inter, system-ui, "Segoe UI", Arial, sans-serif; font-size: 9.6pt; line-height: 1.5; color: var(--text); }
+  h1, h2, h3 { color: var(--ink); margin: 0; line-height: 1.2; }
+  p { margin: 0; }
+  a { color: var(--accent); text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .eyebrow { font-size: 8pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
+             padding-bottom: 5px; border-bottom: 1.5px solid var(--ink); margin: 0 0 12px; }
+  section { margin-top: 18px; }
+  .break { break-before: page; }
+  .keep { break-inside: avoid; }
+
+  /* ---------- Cover / header ---------- */
+  .head { display: flex; gap: 18px; align-items: center; padding: 16px 18px; background: var(--paper);
+          border-top: 4px solid var(--accent); border-radius: 3px; }
+  .head img { width: 82px; height: 82px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--accent); }
+  .head h1 { font-size: 22pt; font-weight: 800; letter-spacing: -.01em; }
+  .head .role { margin-top: 3px; font-size: 11pt; font-weight: 600; color: var(--accent); }
+  .head .contacts { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 8.6pt; }
+  .head .contacts a { color: var(--ink); }
+  .head .contacts b { color: var(--text-3); font-weight: 600; margin-right: 3px; }
+
+  .profile { font-size: 10.4pt; line-height: 1.6; color: var(--text); }
+
+  /* ---------- Skills ---------- */
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px; }
+  .skills div { display: grid; grid-template-columns: 92px 1fr; gap: 8px; }
+  .skills dt { font-size: 7.6pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); padding-top: 1.5px; }
+  .skills dd { margin: 0; color: var(--text-2); }
+
+  /* ---------- Two-column facts (experience, education) ---------- */
+  .row { display: grid; grid-template-columns: 112px 1fr; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .row:first-of-type { padding-top: 0; }
+  .when { font-size: 8.2pt; font-weight: 600; color: var(--text-3); }
+  .row h3 { font-size: 10.5pt; font-weight: 700; }
+  .row .org { font-size: 8.8pt; color: var(--accent); font-weight: 600; margin-top: 1px; }
+  .row ul { margin: 5px 0 0; padding-left: 14px; color: var(--text-2); }
+  .row li + li { margin-top: 2px; }
+  .row p { margin-top: 4px; color: var(--text-2); }
+  .muted { font-weight: 400; color: var(--text-3); font-size: 9pt; }
+
+  /* ---------- Projects ---------- */
+  .proj { border: 1px solid var(--line); border-radius: 3px; padding: 14px 16px; margin-bottom: 12px; break-inside: avoid; }
+  .proj-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .proj h3 { font-size: 12pt; font-weight: 700; }
+  .tag { font-size: 7.4pt; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+         background: var(--accent-soft); padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+  .proj-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 16px; margin-top: 10px; align-items: start; }
+  .proj-grid.solo { grid-template-columns: 1fr; }
+  .proj-grid img { border: 1px solid var(--line); border-radius: 2px; background: #fff; }
+  .pwr { margin: 0; }
+  .pwr dt { font-size: 7.4pt; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .pwr dd { margin: 1px 0 7px; color: var(--text-2); }
+  .pwr dd:last-child { margin-bottom: 0; }
+  .stack { margin-top: 9px; font-size: 8.4pt; color: var(--text-3); }
+  .stack b { color: var(--ink); font-weight: 600; }
+  .link { margin-top: 3px; font-size: 8.4pt; word-break: break-all; }
+
+  /* ---------- Footer ---------- */
+  .end { margin-top: 18px; padding: 14px 18px; background: var(--ink); color: #fff; border-radius: 3px; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+  .end p { color: #fff; font-size: 10pt; font-weight: 500; max-width: 60%; }
+  .end .c { font-size: 8.6pt; text-align: right; line-height: 1.6; }
+  .end a { color: #9fe1cb; }
+</style>
+</head>
+<body>
+
+  <!-- ================= PAGE 1 ================= -->
+  <header class="head">
+    <img src="../images/headshot.jpg" alt="">
+    <div>
+      <h1>Saad Chughtai</h1>
+      <p class="role">Data · Software · AI automation · Manchester</p>
+      <p class="contacts">
+        <span><b>Email</b><a href="mailto:saadchughtai756@gmail.com">saadchughtai756@gmail.com</a></span>
+        <span><b>Website</b><a href="https://sc-freelance.github.io/">sc-freelance.github.io</a></span>
+        <span><b>GitHub</b><a href="https://github.com/sc-freelance">github.com/sc-freelance</a></span>
+        <span><b>LinkedIn</b><a href="https://www.linkedin.com/in/saad-chughtai-b77506301">linkedin.com/in/saad-chughtai-b77506301</a></span>
+      </p>
+    </div>
+  </header>
+
+  <section>
+    <h2 class="eyebrow">Profile</h2>
+    <p class="profile">I build data, software and AI automation projects with Python, SQL, React and Claude, backed by A-level Maths and Further Maths. I'm open to entry-level roles and apprenticeships in data analysis and data science, software development, or AI automation. Since December 2025 I've been a Junior Developer on a work experience placement at Amica Connect Technologies.</p>
+  </section>
+
+  <section class="keep">
+    <h2 class="eyebrow">Skills</h2>
+    <dl class="skills">
+      <div><dt>Data</dt><dd>Python, Pandas, NumPy, Scikit-learn, Matplotlib, SQL, Jupyter, Tableau, BigQuery, Astrato</dd></div>
+      <div><dt>Software</dt><dd>JavaScript, React, HTML, CSS, Django, Django REST Framework, SQLite</dd></div>
+      <div><dt>AI and automation</dt><dd>Claude, Gemini (Google GenAI SDK), Composio, prompt engineering, GoHighLevel workflows</dd></div>
+      <div><dt>Tools</dt><dd>Git, GitHub, Pytest, Postman, VS Code</dd></div>
+    </dl>
+  </section>
+
+  <section class="keep">
+    <h2 class="eyebrow">Experience</h2>
+    <div class="row">
+      <p class="when">Dec 2025 – present</p>
+      <div>
+        <h3>Junior Developer <span class="muted">(work experience placement)</span></h3>
+        <p class="org">Amica Connect Technologies</p>
+        <ul>
+          <li>Built, tested and deployed an AI-powered Q&amp;A agent for client enquiries. It ran live until the company decided to take it offline.</li>
+          <li>Built and maintained CRM pipelines and automated workflows in GoHighLevel.</li>
+          <li>Built landing pages and set up domains and DNS records for client websites.</li>
+          <li>Worked with marketing and engineering colleagues to troubleshoot technical issues.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <p class="when">16 Oct 2026</p>
+      <div>
+        <h3>Green Circles AI Hackathon</h3>
+        <p class="org">Barclays Eagle Labs, Manchester</p>
+        <p>Took part in the Green Circles Manchester AI hackathon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="keep">
+    <h2 class="eyebrow">Education and certifications</h2>
+    <div class="row">
+      <p class="when">Oct 2023 – Jun 2025</p>
+      <div>
+        <h3>A-levels <span class="muted">· Bolton Sixth Form College</span></h3>
+        <p>Mathematics (A), Further Mathematics (B), Art and Design (B) · 128 UCAS points</p>
+      </div>
+    </div>
+    <div class="row">
+      <p class="when">Oct 2022 – Jun 2023</p>
+      <div>
+        <h3>GCSEs <span class="muted">· Eden Boys' School, Bolton</span></h3>
+        <p>Fine Art (9), Mathematics (8), Urdu (8), English Language (7), English Literature (7), Combined Science double award (7, 7)</p>
+      </div>
+    </div>
+    <div class="row">
+      <p class="when">Certifications</p>
+      <div>
+        <p style="margin-top:0">IBM Full Stack Software Developer Professional Certificate · Google AI Fundamentals (Coursera)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="break">
+    <h2 class="eyebrow">Projects</h2>
+
+    <article class="proj">
+      <div class="proj-top"><h3>Greater Manchester housing and council tax analysis</h3><span class="tag">Data analysis</span></div>
+      <div class="proj-grid">
+        <img src="../images/gm-housing-median-prices.jpg" alt="">
+        <div>
+          <dl class="pwr">
+            <dt>Data</dt><dd>Official open data from HM Land Registry and the Valuation Office Agency for Greater Manchester's 10 boroughs.</dd>
+            <dt>What I did</dt><dd>Filtered 90,867 national property sales down to 2,964 standard Greater Manchester sales, and loaded 32 yearly snapshots of housing stock (1993–2024), finding and fixing a double-counting bug along the way.</dd>
+          </dl>
+          <p class="stack"><b>Stack:</b> Python · Pandas · Matplotlib · Scikit-learn · Jupyter</p>
+          <p class="link"><a href="https://github.com/sc-freelance/Greater-Manchester-Housing-Property-Council-Tax-Analysis">github.com/sc-freelance/Greater-Manchester-Housing-Property-Council-Tax-Analysis</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="proj-top"><h3>Engine health monitor (NASA turbofan data)</h3><span class="tag">In progress</span></div>
+      <div class="proj-grid solo">
+        <dl class="pwr">
+          <dt>Goal</dt><dd>Predicting which aircraft engines need maintenance first, using NASA's turbofan sensor data.</dd>
+          <dt>Done so far</dt><dd>Cleaned 20,000+ sensor readings in Python, flagged each engine as Healthy, Watch or Critical, loaded the data into BigQuery and built a two-page Astrato dashboard.</dd>
+          <dt>Next</dt><dd>A public dashboard link, a machine-learning model to predict each engine's remaining life, and the full write-up on GitHub.</dd>
+        </dl>
+      </div>
+      <p class="stack"><b>Stack:</b> Python · Pandas · SQL · BigQuery · Astrato</p>
+    </article>
+
+    <article class="proj">
+      <div class="proj-top"><h3>Car price prediction</h3><span class="tag">Machine learning</span></div>
+      <div class="proj-grid">
+        <img src="../images/car-price-polynomial.jpg" alt="">
+        <div>
+          <dl class="pwr">
+            <dt>What I did</dt><dd>Built linear and polynomial regression models that predict car prices, with validation that rejects invalid prices and horsepower values.</dd>
+            <dt>Testing</dt><dd>Wrote 14 Pytest tests and debugged 7 failures until all 14 passed.</dd>
+          </dl>
+          <p class="stack"><b>Stack:</b> Python · Pandas · NumPy · Scikit-learn · Pytest</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="break" style="margin-top:0">
+    <article class="proj">
+      <div class="proj-top"><h3>My AI agent workflow (Claude + Composio)</h3><span class="tag">AI automation</span></div>
+      <div class="proj-grid">
+        <img src="../images/ai_agent_workflow.png" alt="">
+        <div>
+          <p style="color:var(--text-2)">I use Claude as a personal AI agent for my job search and projects. I set the goal and make the decisions. Claude plans the steps and does the legwork through Composio connectors (Gmail, Google Calendar, Drive, BigQuery) and my own browser (LinkedIn, Astrato, GitHub). On my engine health project, it loaded my cleaned data into BigQuery and helped build the Astrato dashboard. Every email, message and post waits for my approval, and I write and check my own code.</p>
+          <p class="stack"><b>Stack:</b> Claude · Composio · Claude in Chrome · BigQuery · prompt engineering</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="proj-top"><h3>DevTrack</h3><span class="tag">Software development</span></div>
+      <div class="proj-grid solo">
+        <p style="color:var(--text-2)">A full-stack app for tracking development tasks: a Kanban board in React, connected to a Django REST Framework API that validates input and powers a live analytics view of task progress.</p>
+      </div>
+      <p class="stack"><b>Stack:</b> React · Django REST Framework · SQLite · Axios</p>
+      <p class="link"><a href="https://github.com/sc-freelance/DevTrack">github.com/sc-freelance/DevTrack</a></p>
+    </article>
+
+    <div class="end keep">
+      <p>Open to entry-level roles and apprenticeships in data, software development and AI automation. I'd love to hear from you.</p>
+      <div class="c">
+        <a href="mailto:saadchughtai756@gmail.com">saadchughtai756@gmail.com</a><br>
+        <a href="https://sc-freelance.github.io/">sc-freelance.github.io</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

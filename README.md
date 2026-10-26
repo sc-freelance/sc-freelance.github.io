@@ -14,6 +14,8 @@ script.js      Extras: dark mode toggle, fade-in on scroll, the curved timeline 
 images/        Headshot, project images, hackathon photo, favicon
 images/logos/  Skill logos (single-colour SVGs)
 cv/            Your CV PDF
+portfolio/     Portfolio PDF (built from _portfolio/portfolio.html)
+_portfolio/    Source and build script for the portfolio PDF (not published)
 ```
 
 The page still works if `script.js` fails to load. You only lose the extras.
@@ -84,6 +86,24 @@ To show a year instead of "A-levels", change the text in `<p class="tl-year">`.
 
 Bump the version number at the end of their links in `index.html`, e.g. `styles.css?v=2` → `styles.css?v=3`.
 Otherwise phones that visited before may keep showing the old styles with the new page.
+
+## Update the portfolio PDF
+
+The "Portfolio PDF" button downloads `portfolio/Saad-Chughtai-Portfolio.pdf`. It's built from `_portfolio/portfolio.html`.
+Folders starting with `_` aren't published, so that page isn't public.
+
+1. Edit `_portfolio/portfolio.html`. Only add finished, accurate content: this file gets sent to employers.
+2. Rebuild the PDF from the repository folder:
+
+```bash
+pip install playwright
+python3 -m playwright install chromium
+python3 _portfolio/build.py
+```
+
+3. Commit both the HTML and the new PDF.
+
+Or ask Claude to update and rebuild it.
 
 ## Draft sections and preview mode
 

@@ -164,10 +164,13 @@ svg.fill { fill: currentColor; stroke: none; }
   color: var(--warm); margin-bottom: 4px;
 }
 .role { margin-top: 10px; font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+.role-place { display: block; margin-top: 2px; color: var(--text-2); font-weight: 500; }
+.role-place .sep { display: none; }
 .pitch { margin-top: 14px; font-size: 1.05rem; color: var(--text-2); max-width: 34em; }
 
 .hero-actions { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 420px; }
-.hero-actions .btn { padding: 12px 10px; white-space: nowrap; }
+.hero-actions .btn { padding: 12px 16px; white-space: nowrap; }
+.hero-actions .btn-primary { grid-column: 1 / -1; }
 .hero-actions .btn-primary { letter-spacing: 0.06em; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -420,6 +423,8 @@ footer { padding: 24px 20px 40px; text-align: center; color: var(--text-3); font
 @media (min-width: 640px) {
   .nav { gap: 28px; }
   .nav-wide { display: inline; }
+  .role-place { display: inline; margin: 0; color: inherit; font-weight: inherit; white-space: nowrap; }
+  .role-place .sep { display: inline; }
   .logos { grid-template-columns: repeat(6, 1fr); }
   .grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .email-row { grid-template-columns: auto auto; justify-content: start; }
@@ -434,6 +439,8 @@ footer { padding: 24px 20px 40px; text-align: center; color: var(--text-3); font
     min-height: calc(100vh - 62px); max-height: 820px; padding: 40px 20px 64px;
   }
   .hero-text { flex: 1; max-width: 560px; }
+  .hero-actions { grid-template-columns: repeat(3, auto); max-width: none; justify-content: start; }
+  .hero-actions .btn-primary { grid-column: auto; }
   .hero-photo { width: 300px; margin-right: 30px; }
   .hero-photo::before { inset: -14px; }
   .logos { grid-template-columns: repeat(12, 1fr); }
